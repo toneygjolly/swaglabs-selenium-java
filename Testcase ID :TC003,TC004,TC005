@@ -1,0 +1,39 @@
+//Testcase ID :TC003
+//When the user does not enter a username in the username textbox or a password in the password 
+//textbox, and then clicks the Login button, they should not be able to log in successfully.
+
+//Testcase ID :TC004
+// when the user enters a valid username in the username textbox but does not enter a password 
+//in the password textbox, and then clicks the Login button, they are not be able to log in successfully.
+
+//Testcase ID :TC005
+// when the user does not enter a username in the username textbox but enters a valid password
+// in the password textbox, and then clicks the Login button, they arenot be able to log in successfully.
+
+package swaglabs_selenium_java;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Testcase_ID_TC003_login_no_credentials {
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		 System.setProperty("webdriver.edge.driver", "E:\\NEW LAPTOP\\selenium_java\\Libraray\\edgedriver_win64\\msedgedriver.exe");
+		 WebDriver driver =new EdgeDriver();
+		    driver.get("https://www.saucedemo.com/v1/");
+		    Thread.sleep(4000);
+		    String title =driver.getTitle();
+		    System.out.println("The title of web page :"+title);
+		    WebElement username = driver.findElement(By.id("user-name"));
+		  // username.sendKeys("standard_user11");
+		     username.sendKeys("");
+		    WebElement password = driver.findElement(By.id("password"));
+		  //  password.sendKeys("secret_sauce12");
+		    password.sendKeys("");
+		    WebElement login_button =driver.findElement(By.id("login-button"));
+		    login_button.click();
+		    
+	}
+
+}
