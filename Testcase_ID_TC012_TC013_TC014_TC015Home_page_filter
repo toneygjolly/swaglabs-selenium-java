@@ -1,0 +1,48 @@
+//Verify that the Name (A–Z) filter on the home page displays the items in ascending alphabetical order.
+//Verify that the Name (Z–A) filter on the home page displays the items in descending alphabetical order.
+//Verify that the Price (Low to High) filter on the home page displays the items with the lowest prices first and the highest prices last.
+//Verify that the Price (High to Low) filter on the home page displays the items with the highest prices first and the lowest prices last.
+
+package swaglabs_selenium_java;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Testcase_ID_TC012_TC013_TC014_TC015Home_page_filter {
+
+	public static void main (String [] args) throws InterruptedException {
+		System.setProperty("webdriver.edge.driver", "E:\\NEW LAPTOP\\selenium_java\\Libraray\\edgedriver_win64\\msedgedriver.exe");
+	        WebDriver driver = new EdgeDriver();
+	        driver.manage().window().maximize();
+	        driver.get("https://www.saucedemo.com/v1/");
+			Thread.sleep(4000);
+	//Login page
+	     String title =driver.getTitle();
+	     System.out.println("The title of page:"+title);
+	     WebElement username =driver.findElement(By.id("user-name"));
+	     username.sendKeys("standard_user");
+	     WebElement password =driver.findElement(By.id("password"));
+	     password.sendKeys("secret_sauce");
+		    WebElement login_button =driver.findElement(By.id("login-button"));
+		    login_button.click();
+	//Home page
+		     System.out.println("The title of page1:"+title);
+		     Thread.sleep(2000);
+		     WebElement dropdown = driver.findElement(By.className("product_sort_container"));
+             Select select = new Select(dropdown);
+             selectFilter(driver, "Name (A to Z)");
+             selectFilter(driver, "Name (Z to A)");
+             selectFilter(driver, "Price (low to high)");
+             selectFilter(driver, "Price (high to low)");
+		 	    
+}
+	public static void selectFilter(WebDriver driver, String visibleText) throws InterruptedException {
+        WebElement dropdown = driver.findElement(By.className("product_sort_container"));
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(visibleText);
+        System.out.println("Selected filter: " + visibleText);
+        Thread.sleep(2000); 
+    }
+}
